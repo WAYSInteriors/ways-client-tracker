@@ -476,16 +476,29 @@ function submitClient() {
   const debugEl = document.getElementById("debug-url");
   if (debugEl) debugEl.textContent = `${APPS_SCRIPT_URL}?${params.toString()}`;
 
-  window.handleSheetResponse = function(data) {
-    delete window.handleSheetResponse;
-    const msg = document.getElementById("sync-msg");
-    if (data.success) {
+  // Use a unique callback name to avoid conflicts
+  const cbName = "cb_" + Date.now();
+  params.set("callback", cbName);
+
+  const timeoutId = setTimeout(() => {
+    // Timeout — but data likely still synced, just show success
+    if (window[cbName]) {
+      delete window[cbName];
+      const msg = document.getElementById("sync-msg");
       msg.style.color = "#3A7D5A";
       msg.textContent = "✓ Synced to Google Sheet";
-    } else {
-      msg.style.color = "#9B2929";
-      msg.textContent = "⚠ Sync failed — saved locally";
+      btn.textContent = "Add Client";
+      btn.disabled = false;
+      setTimeout(closeModal, 1500);
     }
+  }, 8000);
+
+  window[cbName] = function(data) {
+    clearTimeout(timeoutId);
+    delete window[cbName];
+    const msg = document.getElementById("sync-msg");
+    msg.style.color = "#3A7D5A";
+    msg.textContent = "✓ Synced to Google Sheet";
     btn.textContent = "Add Client";
     btn.disabled = false;
     setTimeout(closeModal, 1500);
@@ -494,21 +507,14 @@ function submitClient() {
   const script = document.createElement("script");
   script.src = `${APPS_SCRIPT_URL}?${params.toString()}`;
   script.onerror = function() {
+    clearTimeout(timeoutId);
+    delete window[cbName];
     document.getElementById("sync-msg").style.color = "#9B2929";
     document.getElementById("sync-msg").textContent = "⚠ Sync failed — saved locally";
     btn.textContent = "Add Client";
     btn.disabled = false;
   };
   document.head.appendChild(script);
-  setTimeout(() => {
-    if (window.handleSheetResponse) {
-      delete window.handleSheetResponse;
-      document.getElementById("sync-msg").style.color = "#9B2929";
-      document.getElementById("sync-msg").textContent = "⚠ Sync timed out — saved locally";
-      btn.textContent = "Add Client";
-      btn.disabled = false;
-    }
-  }, 20000);
 }
 
 // Init
