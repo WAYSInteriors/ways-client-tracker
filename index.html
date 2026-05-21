@@ -469,7 +469,7 @@ function submitClient() {
     address: client.address, type: client.type, status: client.status,
     service: client.service, referral: client.referral, spaces: client.spaces,
     notes: client.notes, step: String(client.stepNum), year: String(client.year),
-    callback: "cbName",
+    callback: "handleSheetResponse",
   });
 
   // Debug — show the URL being sent
