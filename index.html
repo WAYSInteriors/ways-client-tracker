@@ -154,23 +154,22 @@
       <div>
         <label class="label">Onboarding Step</label>
         <select id="f-step">
-          <option value="0">Not Started</option>
-          <option value="1">1 · Contact Details Captured</option>
-          <option value="2">2 · IC Added to Calendar</option>
-          <option value="3">3 · Email Confirmation</option>
-          <option value="4">4 · Appt Reminder Email (1wk)</option>
-          <option value="5">5 · Appt Reminder Text (24hr)</option>
-          <option value="6">6 · Payment Received</option>
-          <option value="7">7 · Contact Card Sent</option>
-          <option value="8">8 · Harvest Client/Project Created</option>
-          <option value="9">9 · Houzz Project/Contract Created</option>
-          <option value="10">10 · Time Entered / Payment Applied</option>
-          <option value="11">11 · Photo Album Created</option>
-          <option value="12">12 · IC Notes Houzz</option>
-          <option value="13">13 · Next Step Email</option>
-          <option value="14">14 · Agreement Signed</option>
-          <option value="15">15 · Welcome Email Sent</option>
-          <option value="16">16 · WAYS / Trade WT Scheduled</option>
+          <option>Not Started</option>
+          <option>1 · Contact Details Captured</option>
+          <option>2 · IC Added to Calendar</option>
+          <option>3 · Email Confirmation</option>
+          <option>4 · Appt Reminder Email (1wk)</option>
+          <option>5 · Appt Reminder Text (24hr)</option>
+          <option>6 · Payment Received</option>
+          <option>7 · Contact Card Sent</option>
+          <option>8 · Harvest Client/Project Created</option>
+          <option>9 · Houzz Project/Contract Created</option>
+          <option>10 · Time Entered / Payment Applied</option>
+          <option>11 · Photo Album Created</option>
+          <option>12 · IC Notes Houzz</option>
+          <option>13 · Next Step Email</option>
+          <option>14 · Agreement Signed</option>
+          <option>15 · Welcome Email Sent</option>
         </select>
       </div>
       <div>
@@ -190,8 +189,8 @@
 <script>
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNQMOruCn4ach1xqXandWHUjlZO3_0Xf-6fmwSWCNN2e6PER8ZMVY4vAOahuO695mK/exec";
 
-const STEPS = ["Not Started","1 · Contact Details Captured","2 · IC Added to Calendar","3 · Email Confirmation","4 · Appt Reminder Email (1wk)","5 · Appt Reminder Text (24hr)","6 · Payment Received","7 · Contact Card Sent","8 · Harvest Client/Project Created","9 · Houzz Project/Contract Created","10 · Time Entered / Payment Applied","11 · Photo Album Created","12 · IC Notes Houzz","13 · Next Step Email","14 · Agreement Signed","15 · Welcome Email Sent","16 · WAYS / Trade WT Scheduled"];
-const TOTAL_STEPS = 16;
+const STEPS = ["Not Started","1 · Contact Details Captured","2 · IC Added to Calendar","3 · Email Confirmation","4 · Appt Reminder Email (1wk)","5 · Appt Reminder Text (24hr)","6 · Payment Received","7 · Contact Card Sent","8 · Harvest Client/Project Created","9 · Houzz Project/Contract Created","10 · Time Entered / Payment Applied","11 · Photo Album Created","12 · IC Notes Houzz","13 · Next Step Email","14 · Agreement Signed","15 · Welcome Email Sent"];
+const TOTAL_STEPS = 15;
 
 const STATUS_COLORS = {
   "Onboarded":             { bg:"#D2EAD9", text:"#3A7D5A" },
@@ -217,53 +216,53 @@ const pct = (n,d) => d===0 ? 0 : Math.round((n/d)*100);
 
 // ── Seed data ──────────────────────────────────────────────────────────────
 let clients = [
-  { name:"Amy Pink", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Lori Eurek", type:"RESIDENTIAL", status:"Onboarded", service:"Md Remodel (300sqft-700sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Amanda Fink", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Mila O'Brien", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
+  { name:"Amy Pink", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Lori Eurek", type:"RESIDENTIAL", status:"Onboarded", service:"Md Remodel (300sqft-700sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Amanda Fink", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Mila O'Brien", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
   { name:"Rachel Richards", type:"RESIDENTIAL", status:"Backed Out", service:"Md Renovation (300sqft-700sqft)", referral:"Vendor", step:"15 · Welcome Email Sent", year:2025 },
-  { name:"Anne Mackie", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Paige Rivard", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Website Form", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Shelly Gray", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Trade", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
+  { name:"Anne Mackie", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Paige Rivard", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Website Form", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Shelly Gray", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Trade", step:"15 · Welcome Email Sent", year:2025 },
   { name:"Audri Saylor", type:"RESIDENTIAL", status:"Cold Lead", service:"", referral:"Other", step:"1 · Contact Details Captured", year:2025 },
-  { name:"Lynn Riggs", type:"RESIDENTIAL", status:"Signed Contract", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Bridget Gordman", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Remodel (700sqft+)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Sommer Hahn", type:"RESIDENTIAL", status:"Onboarded", service:"Md Renovation (300sqft-700sqft)", referral:"Past Client", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
+  { name:"Lynn Riggs", type:"RESIDENTIAL", status:"Signed Contract", service:"Sm Remodel (100sqft-300sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Bridget Gordman", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Remodel (700sqft+)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Sommer Hahn", type:"RESIDENTIAL", status:"Onboarded", service:"Md Renovation (300sqft-700sqft)", referral:"Past Client", step:"15 · Welcome Email Sent", year:2025 },
   { name:"Kristen Piatkowski", type:"RESIDENTIAL", status:"Booked IC", service:"Md Renovation (300sqft-700sqft)", referral:"Past Client", step:"4 · Appt Reminder Email (1wk)", year:2025 },
-  { name:"Jill Davie", type:"RESIDENTIAL", status:"Booked IC", service:"Md Renovation (300sqft-700sqft)", referral:"Google", step:"16 · WAYS / Trade WT Scheduled", year:2025 },
-  { name:"Lea Frohardt", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Website Form", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Maura O'Keefe", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Realtor", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Deb Lowndes", type:"COMMERCIAL", status:"Onboarded", service:"Restaurant", referral:"Family/Friend", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Jill Davie", type:"RESIDENTIAL", status:"Booked IC", service:"Md Renovation (300sqft-700sqft)", referral:"Google", step:"15 · Welcome Email Sent", year:2025 },
+  { name:"Lea Frohardt", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Website Form", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Maura O'Keefe", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Realtor", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Deb Lowndes", type:"COMMERCIAL", status:"Onboarded", service:"Restaurant", referral:"Family/Friend", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Trish Ruffino", type:"RESIDENTIAL", status:"Backed Out", service:"Interior Paint Consultation", referral:"Google", step:"1 · Contact Details Captured", year:2026 },
-  { name:"Lisa Scheve", type:"NEW BUILD", status:"Onboarded", service:"New Build - Full Service", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Tiffany Meysenburg", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Lisa Scheve", type:"NEW BUILD", status:"Onboarded", service:"New Build - Full Service", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Tiffany Meysenburg", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Kathy Gate", type:"RESIDENTIAL", status:"Backed Out", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"13 · Next Step Email", year:2026 },
-  { name:"Brain Wilson", type:"RESIDENTIAL", status:"Onboarded", service:"", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Alison Freeman", type:"BUNDLED", status:"Onboarded", service:"", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"McLeay-Eoff", type:"BUNDLED", status:"Onboarded", service:"", referral:"", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Brain Wilson", type:"RESIDENTIAL", status:"Onboarded", service:"", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Alison Freeman", type:"BUNDLED", status:"Onboarded", service:"", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"McLeay-Eoff", type:"BUNDLED", status:"Onboarded", service:"", referral:"", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Todd & Nicole Morrissey", type:"BUNDLED", status:"Bundled - In Progress", service:"", referral:"", step:"13 · Next Step Email", year:2026 },
   { name:"Vasa", type:"BUNDLED", status:"Backed Out", service:"", referral:"", step:"Not Started", year:2026 },
   { name:"Luchiari", type:"BUNDLED", status:"Bundled - In Progress", service:"", referral:"", step:"Not Started", year:2026 },
   { name:"Kosiski", type:"BUNDLED", status:"Bundled - OPEN", service:"", referral:"", step:"Not Started", year:2026 },
   { name:"Moes", type:"BUNDLED", status:"Bundled - OPEN", service:"", referral:"", step:"Not Started", year:2026 },
-  { name:"Jennifer Goldsmith", type:"NEW BUILD", status:"Onboarded", service:"New Build - Selection Services", referral:"Walk-In", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Don & Stephanie Carter", type:"NEW BUILD", status:"Onboarded", service:"New Build - Full Service", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Jennifer Goldsmith", type:"NEW BUILD", status:"Onboarded", service:"New Build - Selection Services", referral:"Walk-In", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Don & Stephanie Carter", type:"NEW BUILD", status:"Onboarded", service:"New Build - Full Service", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Don & Melinda Kelly", type:"BUNDLED", status:"Bundled - In Progress", service:"", referral:"", step:"1 · Contact Details Captured", year:2026 },
   { name:"Jim & Lori Mazurek", type:"NEW BUILD", status:"Open Contract", service:"New Build - Full Service", referral:"Other", step:"13 · Next Step Email", year:2026 },
   { name:"Kimberly & Matt Harden", type:"", status:"Open Contract", service:"", referral:"", step:"Not Started", year:2026 },
-  { name:"Angela Salts", type:"RESIDENTIAL", status:"Onboarded", service:"Md Remodel (300sqft-700sqft)", referral:"Google", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Pam Ehly", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Lisa", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Kim Keeler", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Karie Milford", type:"RESIDENTIAL", status:"Onboarded", service:"", referral:"", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Angela Salts", type:"RESIDENTIAL", status:"Onboarded", service:"Md Remodel (300sqft-700sqft)", referral:"Google", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Pam Ehly", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Remodel (100sqft-300sqft)", referral:"Lisa", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Kim Keeler", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Karie Milford", type:"RESIDENTIAL", status:"Onboarded", service:"", referral:"", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Lauren & Dusty Jazwick", type:"NEW BUILD", status:"Cold Lead", service:"New Build - Full Service", referral:"Other", step:"Not Started", year:2026 },
-  { name:"Shannon & Kevin Scott", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Family/Friend", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Shannon & Kevin Scott", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Family/Friend", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Cassandra Fedoris", type:"RESIDENTIAL", status:"Cold Lead", service:"Interior Paint Consultation", referral:"Website Form", step:"Not Started", year:2026 },
   { name:"Jessica Jones", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Remodel (700sqft+)", referral:"Lisa", step:"14 · Agreement Signed", year:2026 },
-  { name:"Larry Stevens", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Phone Call", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Chris Hill & Kim Denton-Hill", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Dione Haag-Jackson", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Builder", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Annie Linberg & Nabil", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
-  { name:"Hannah Pred", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"16 · WAYS / Trade WT Scheduled", year:2026 },
+  { name:"Larry Stevens", type:"RESIDENTIAL", status:"Onboarded", service:"Lg Renovation (700sqft+)", referral:"Phone Call", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Chris Hill & Kim Denton-Hill", type:"RESIDENTIAL", status:"Onboarded", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Dione Haag-Jackson", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Builder", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Annie Linberg & Nabil", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
+  { name:"Hannah Pred", type:"RESIDENTIAL", status:"Onboarded", service:"Furniture & Finishes", referral:"Other", step:"15 · Welcome Email Sent", year:2026 },
   { name:"Ruth Dewhurst", type:"RESIDENTIAL", status:"Open Contract", service:"Sm Renovation (100sqft-300sqft)", referral:"Other", step:"13 · Next Step Email", year:2026 },
   { name:"Allie Barton", type:"COMMERCIAL", status:"Cold Lead", service:"Md Renovation (300sqft-700sqft)", referral:"Website Form", step:"1 · Contact Details Captured", year:2026 },
   { name:"Kelsey Lacy", type:"RESIDENTIAL", status:"Cold Lead", service:"Md Renovation (300sqft-700sqft)", referral:"Website Form", step:"1 · Contact Details Captured", year:2026 },
@@ -450,8 +449,7 @@ function submitClient() {
     referral: document.getElementById("f-referral").value,
     spaces:   document.getElementById("f-spaces").value,
     notes:    document.getElementById("f-notes").value,
-    stepNum:  parseInt(document.getElementById("f-step").value) || 0,
-    step:     document.getElementById("f-step").options[document.getElementById("f-step").selectedIndex].text.trim(),
+    step:     document.getElementById("f-step").value,
     year:     parseInt(document.getElementById("f-year").value),
   };
 
@@ -468,7 +466,7 @@ function submitClient() {
     name: client.name, email: client.email, phone: client.phone,
     address: client.address, type: client.type, status: client.status,
     service: client.service, referral: client.referral, spaces: client.spaces,
-    notes: client.notes, step: String(client.stepNum), year: String(client.year),
+    notes: client.notes, step: client.step, year: String(client.year),
   });
 
   const debugEl = document.getElementById("debug-url");
