@@ -45,7 +45,6 @@
     </div>
     <div style="display:flex; align-items:center; gap:12px;">
       <button class="year-btn active" onclick="setYear('2026')" id="yr2026">2026</button>
-      <button class="year-btn" onclick="setYear('2025')" id="yr2025">2025</button>
       <button class="year-btn" onclick="setYear('All')" id="yrAll">All</button>
       <button onclick="openModal()" style="background:#C9622F; color:#fff; border:none; border-radius:8px; padding:7px 18px; font-size:13px; font-weight:600; display:flex; align-items:center; gap:6px;">
         <span style="font-size:18px; line-height:1;">+</span> Add Client
@@ -250,7 +249,7 @@ function filteredClients() {
 // ── Year & Tab ────────────────────────────────────────────────────────────────
 function setYear(y) {
   currentYear = y;
-  ["2026","2025","All"].forEach(v => {
+  ["2026","All"].forEach(v => {
     const id = v === "All" ? "yrAll" : `yr${v}`;
     document.getElementById(id).classList.toggle("active", v === y);
   });
