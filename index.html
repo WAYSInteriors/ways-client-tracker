@@ -153,23 +153,23 @@
       <div>
         <label class="label">Onboarding Step</label>
         <select id="f-step">
-          <option>Not Started</option>
-          <option>1 · Contact Details Captured</option>
-          <option>2 · IC Added to Calendar</option>
-          <option>3 · Email Confirmation</option>
-          <option>4 · Appt Reminder Email (1wk)</option>
-          <option>5 · Appt Reminder Text (24hr)</option>
-          <option>6 · Payment Received</option>
-          <option>7 · Contact Card Sent</option>
-          <option>8 · Harvest Client/Project Created</option>
-          <option>9 · Houzz Project/Contract Created</option>
-          <option>10 · Time Entered / Payment Applied</option>
-          <option>11 · Photo Album Created</option>
-          <option>12 · IC Notes Houzz</option>
-          <option>13 · Next Step Email</option>
-          <option>14 · Agreement Signed</option>
-          <option>15 · Welcome Email Sent</option>
-          <option>16 · WAYS / Trade WT Scheduled</option>
+          <option value="0">Not Started</option>
+          <option value="1">1 · Contact Details Captured</option>
+          <option value="2">2 · IC Added to Calendar</option>
+          <option value="3">3 · Email Confirmation</option>
+          <option value="4">4 · Appt Reminder Email (1wk)</option>
+          <option value="5">5 · Appt Reminder Text (24hr)</option>
+          <option value="6">6 · Payment Received</option>
+          <option value="7">7 · Contact Card Sent</option>
+          <option value="8">8 · Harvest Client/Project Created</option>
+          <option value="9">9 · Houzz Project/Contract Created</option>
+          <option value="10">10 · Time Entered / Payment Applied</option>
+          <option value="11">11 · Photo Album Created</option>
+          <option value="12">12 · IC Notes Houzz</option>
+          <option value="13">13 · Next Step Email</option>
+          <option value="14">14 · Agreement Signed</option>
+          <option value="15">15 · Welcome Email Sent</option>
+          <option value="16">16 · WAYS / Trade WT Scheduled</option>
         </select>
       </div>
       <div>
@@ -449,7 +449,7 @@ function submitClient() {
     referral: document.getElementById("f-referral").value,
     spaces:   document.getElementById("f-spaces").value,
     notes:    document.getElementById("f-notes").value,
-    step:     document.getElementById("f-step").value,
+    step:     parseInt(document.getElementById("f-step").value) || 0,
     year:     parseInt(document.getElementById("f-year").value),
   };
 
