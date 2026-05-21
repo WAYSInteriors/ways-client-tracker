@@ -124,6 +124,7 @@
     </div>
 
     <div style="margin-top:32px; font-size:11px; font-family:'DM Mono',monospace; color:#7A6E65; letter-spacing:0.08em;">WAYS Interiors</div>
+    <div id="debug-url" style="margin-top:12px; font-size:10px; color:#9B2929; word-break:break-all; max-width:900px;"></div>
   </div>
 </div>
 
@@ -469,6 +470,10 @@ function submitClient() {
     notes: client.notes, step: client.step, year: String(client.year),
     callback: "handleSheetResponse",
   });
+
+  // Debug — show the URL being sent
+  const debugEl = document.getElementById("debug-url");
+  if (debugEl) debugEl.textContent = `${APPS_SCRIPT_URL}?${params.toString()}`;
 
   window.handleSheetResponse = function(data) {
     delete window.handleSheetResponse;
