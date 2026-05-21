@@ -450,7 +450,8 @@ function submitClient() {
     referral: document.getElementById("f-referral").value,
     spaces:   document.getElementById("f-spaces").value,
     notes:    document.getElementById("f-notes").value,
-    step:     parseInt(document.getElementById("f-step").value) || 0,
+    stepNum:  parseInt(document.getElementById("f-step").value) || 0,
+    step:     document.getElementById("f-step").options[document.getElementById("f-step").selectedIndex].text,
     year:     parseInt(document.getElementById("f-year").value),
   };
 
@@ -467,7 +468,7 @@ function submitClient() {
     name: client.name, email: client.email, phone: client.phone,
     address: client.address, type: client.type, status: client.status,
     service: client.service, referral: client.referral, spaces: client.spaces,
-    notes: client.notes, step: client.step, year: String(client.year),
+    notes: client.notes, step: String(client.stepNum), year: String(client.year),
     callback: "handleSheetResponse",
   });
 
