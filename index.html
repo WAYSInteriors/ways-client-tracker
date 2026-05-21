@@ -464,21 +464,18 @@ function submitClient() {
   btn.disabled = true;
 
   // JSONP call to Apps Script
+  const cbName = "cb_" + Date.now();
   const params = new URLSearchParams({
     name: client.name, email: client.email, phone: client.phone,
     address: client.address, type: client.type, status: client.status,
     service: client.service, referral: client.referral, spaces: client.spaces,
     notes: client.notes, step: String(client.stepNum), year: String(client.year),
-    callback: "handleSheetResponse",
+    callback: cbName,
   });
 
   // Debug — show the URL being sent
   const debugEl = document.getElementById("debug-url");
   if (debugEl) debugEl.textContent = `${APPS_SCRIPT_URL}?${params.toString()}`;
-
-  // Use a unique callback name to avoid conflicts
-  const cbName = "cb_" + Date.now();
-  params.set("callback", cbName);
 
   const timeoutId = setTimeout(() => {
     // Timeout — but data likely still synced, just show success
