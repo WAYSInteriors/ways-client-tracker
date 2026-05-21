@@ -212,7 +212,7 @@ const statusGroup = s => {
   return "pipeline";
 };
 
-const stepIdx = s => { const i = STEPS.indexOf(s); return i < 0 ? 0 : i; };
+const stepIdx = s => { if (!s || s === 'Not Started') return 0; const num = parseInt(s); return isNaN(num) ? (STEPS.indexOf(s) < 0 ? 0 : STEPS.indexOf(s)) : num; };
 const pct = (n,d) => d===0 ? 0 : Math.round((n/d)*100);
 
 // ── Seed data ──────────────────────────────────────────────────────────────
@@ -451,7 +451,7 @@ function submitClient() {
     spaces:   document.getElementById("f-spaces").value,
     notes:    document.getElementById("f-notes").value,
     stepNum:  parseInt(document.getElementById("f-step").value) || 0,
-    step:     document.getElementById("f-step").options[document.getElementById("f-step").selectedIndex].text,
+    step:     document.getElementById("f-step").options[document.getElementById("f-step").selectedIndex].text.trim(),
     year:     parseInt(document.getElementById("f-year").value),
   };
 
