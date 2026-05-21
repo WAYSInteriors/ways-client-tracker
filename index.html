@@ -463,33 +463,33 @@ function submitClient() {
   btn.textContent = "Saving…";
   btn.disabled = true;
 
-  // Send to Google Sheet via hidden iframe
+  // Send to Google Sheet
   const params = new URLSearchParams({
     name: client.name, email: client.email, phone: client.phone,
     address: client.address, type: client.type, status: client.status,
     service: client.service, referral: client.referral, spaces: client.spaces,
     notes: client.notes, step: String(client.stepNum), year: String(client.year),
-    callback: "ignore",
   });
 
   const debugEl = document.getElementById("debug-url");
   if (debugEl) debugEl.textContent = `${APPS_SCRIPT_URL}?${params.toString()}`;
 
-  const iframe = document.createElement("iframe");
-  iframe.style.display = "none";
-  iframe.src = `${APPS_SCRIPT_URL}?${params.toString()}`;
-  document.body.appendChild(iframe);
-
-  // Show success after 4 seconds — script always works based on testing
-  setTimeout(() => {
-    const msg = document.getElementById("sync-msg");
-    msg.style.color = "#3A7D5A";
-    msg.textContent = "✓ Synced to Google Sheet";
-    btn.textContent = "Add Client";
-    btn.disabled = false;
-    setTimeout(closeModal, 1500);
-    document.body.removeChild(iframe);
-  }, 4000);
+  fetch(`${APPS_SCRIPT_URL}?${params.toString()}`, { mode: "no-cors" })
+    .then(() => {
+      const msg = document.getElementById("sync-msg");
+      msg.style.color = "#3A7D5A";
+      msg.textContent = "✓ Synced to Google Sheet";
+      btn.textContent = "Add Client";
+      btn.disabled = false;
+      setTimeout(closeModal, 1500);
+    })
+    .catch(() => {
+      const msg = document.getElementById("sync-msg");
+      msg.style.color = "#9B2929";
+      msg.textContent = "⚠ Sync failed — saved locally";
+      btn.textContent = "Add Client";
+      btn.disabled = false;
+    });
 }
 
 // Init
