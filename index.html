@@ -219,33 +219,25 @@ let clients = [];
 let dataLoaded = false;
 
 function loadClients(year) {
-  const url = `${APPS_SCRIPT_URL}?action=getData&year=${year === "All" ? "all" : year}`;
-  fetch(url, { redirect: "follow" })
-    .then(r => r.json())
-    .then(data => {
-      if (data.success) {
-        clients = data.clients;
-        dataLoaded = true;
-        renderAll();
-        document.getElementById("loading-msg").style.display = "none";
-      }
-    })
-    .catch(() => {
-      // Fallback to JSONP if fetch fails due to CORS
-      const cbName = "cb_" + Date.now();
-      const script = document.createElement("script");
-      script.src = `${url}&callback=${cbName}`;
-      window[cbName] = function(data) {
-        delete window[cbName];
-        if (data.success) {
-          clients = data.clients;
-          dataLoaded = true;
-          renderAll();
-          document.getElementById("loading-msg").style.display = "none";
-        }
-      };
-      document.head.appendChild(script);
-    });
+  const cbName = "cb_" + Date.now();
+  const url = `${APPS_SCRIPT_URL}?action=getData&year=${year === "All" ? "all" : year}&callback=${cbName}`;
+
+  window[cbName] = function(data) {
+    delete window[cbName];
+    if (data.success) {
+      clients = data.clients;
+      dataLoaded = true;
+      renderAll();
+      document.getElementById("loading-msg").style.display = "none";
+    }
+  };
+
+  const script = document.createElement("script");
+  script.src = url;
+  script.onerror = function() {
+    document.getElementById("loading-msg").textContent = "⚠ Could not load data. Check your connection.";
+  };
+  document.head.appendChild(script);
 }
 
 let currentYear = "2026";
