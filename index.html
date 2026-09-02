@@ -206,7 +206,7 @@ const STATUS_COLORS = {
 };
 
 const statusGroup = s => {
-  if(["Onboarded","Signed Contract","Open Contract","Bundled - In Progress","Bundled - OPEN","Bundled - COMPLETED"].includes(s)) return "converted";
+  if(["Onboarded","Signed Contract","Bundled - In Progress","Bundled - OPEN","Bundled - COMPLETED","Completed"].includes(s)) return "converted";
   if(["Backed Out","Cold Lead","SPAM"].includes(s)) return "lost";
   return "pipeline";
 };
