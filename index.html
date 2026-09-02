@@ -223,13 +223,16 @@ function loadClients(year) {
   const url = `${APPS_SCRIPT_URL}?action=getData&year=${yearParam}`;
 
   // Try fetch first (works on most browsers)
-  fetch(url)
-    .then(r => r.json())
-    .then(data => {
+  fetch(url, { redirect: "follow" })
+    .then(r => r.text())
+    .then(text => {
+      const data = JSON.parse(text);
       if (data.success) {
         clients = data.clients;
         dataLoaded = true;
-        renderAll();
+        renderOverview();
+        renderClients();
+        renderOnboarding();
         document.getElementById("loading-msg").style.display = "none";
       }
     })
